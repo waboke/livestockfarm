@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="card mb-3">
-                    <div class="card-header">
-                        <i class="fas fa-crow"></i> Livestocks</div>
-                    <div class="card-body">
-                        <canvas id="myAreaChart" width="100%" height="30"></canvas>
+          <div class="panel panel-default">
+                    <div class="panel-heading">Livestocks</div>
+                    <div class="panel-body" id="demo-buttons">
+                        <p>Click buttons below to change navbar main color :</p>
+                        <div class="row">
+                            {% lorem 1 b random %}
+                            
+                        </div>
                     </div>
-                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                 </div>
 {% endblock content %}
