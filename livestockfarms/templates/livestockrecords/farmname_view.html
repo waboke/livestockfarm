@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+             <div class="container-fluid">
+          <div class="panel panel-default">
+                    <div class="panel-heading panel-menu">
+                    <ul class="nav pull-left">
+                    <li><a type="button" href="{% url 'farmname-add' %}">Add Farm</a></li>
+                    </ul></div>
+                    <div class="panel-body" id="demo-buttons">
+                        <div class="row">
+                            <table class="table table-bordered table-hover" style="margin-bottom:0">
+                                    <caption>List of Farm Names</caption>
+                                    <thead>
+                                        <tr>
+                                            <th>S/No</th>
+                                             <th>View Details</th>
+                                            <th>Farm Name</th>
+                                            <th>Phone Number </th>
+                                            <th>Address</th>
+                                            <th>State</th>
+                                              <th>City</th>
+                                            
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for farm in page_obj %}
+                                <tr>
+                                <td>{{ forloop.counter}}</td>
+                                <td ><a  type="button" href="#" class="btn btn-block btn-outline-primary">View</a></td>
+                                   
+                                    <td>{{farm.name}}</td>
+                                    <td>{{farm.phone}}</td>
+                                    <td>{{farm.address}}</td>
+                                    <td>{{farm.state}}</td>
+                                     <td>{{farm.city}}</td>
+                                   
+                                    <td><a  type="button" href="#" class="btn btn-block btn-outline-warning ">Edit</a></td>
+                                    
+                                    <td><a class="btn btn-block btn-sm btn-outline-danger ">Delete</a></td>
+                                    </tr>
+                                    {% empty %}
+                                        <tr>
+                                        <td colspan="8" class="text-center bg-warning"> No Livestock to display</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                                         
+                        </div>
+                        {% comment %} pagination {% endcomment %}
+                         <div class="pagination-container">
+                            <div class="col-md-4">
+                            Showing page {{page_obj.number}} of {{ page_obj.paginator.num_pages }}
+                            </div>
+                            <div class="col-md-8 align-right float-right mr-auto">
+                            <ul class="pagination ">
+                            {% if page_obj.has_previous %}
+                            <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}><a class="page-link" href="?page=1">&laquo; 1</a></li>
+                            <li class="page-item"> <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+                            {% endif %}
+
+                            {% if page_obj.has_next %}
+                            <li class="page-item"> <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                            <li class="page-item"> <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages}} &raquo;</a></li>
+                            {% endif %}
+
+
+                            </ul>
+                           </div>
+                            </div>
+                        {% comment %} pagination {% endcomment %}
+
+                        
+                    </div>
+                </div>
+                
+{% endblock content %}

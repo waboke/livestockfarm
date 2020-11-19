@@ -1,0 +1,38 @@
+  {% block dailyrecords %}
+  <div class="tab-pane fade " id ="feeding" role="tabpanel" aria-labelledby="feeding-tab">
+                    
+                        <div class="panel panel-default">
+                        
+                            <div class="panel-body">
+                                <div class="row">
+                                <table class="table table-bordered table-hover" style="margin-bottom:0">
+                                   
+                                    <thead>
+                                    
+                                        <tr>
+                                            <th>S/No</th>
+                                             
+                                            <th>Farm Name</th>
+                                           
+                                            <th>Qty</th>
+                                            <th>Date </th>
+                                            
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                {% include 'includes/_list_feed.html' %}
+                                    </tbody>
+                                </table>
+                                
+                                </div>
+                                
+                            </div>
+                        </div>
+                       
+                   
+                    </div>
+  
+  {% endblock dailyrecords %}
+  

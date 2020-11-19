@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block javascript %}
+  <script src="{% static 'js/dailyrecords.js' %}"></script>
+{% endblock javascript %}
+
+{%   block content %}
+
+<div class="container-fluid">
+<div class="panel panel-default demo">
+                    <div class="panel-body">
+              <table class="table table-bordered">
+                   <tr><a href="{% url 'livestocks-views' %}" type="button" class="btn btn-primary">Back</a></tr>
+                     <tr>
+                            <th >Livestock ID</th>
+                            <td >
+                               000/{{ livestocksDetails.id }}
+                            </td>
+                           <th >Quantity in Stock</th>
+                            
+                            
+                            <td>
+                                 {{ livestocksDetails.livestockname }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th >Farm Name</th>
+                            <td >
+                                {{ livestocksDetails.farmName }}
+                            </td>
+                           <th >Live Stock type</th>
+                            
+                            
+                            <td>
+                                 {{ livestocksDetails.livestockname }}
+                            </td>
+                        </tr>
+                       
+                        <tr>
+                            <th>Quantity Supplied</th>
+                            <td>
+                                {{ livestocksDetails.qty }}
+                            </td>
+                            
+                            <th>Date stocked</th>
+                            <td>
+                                 {{ livestocksDetails.datepurchased }}
+                            </td>
+                            
+                        </tr>
+                       
+                        
+                    </table>
+                    <h4 >Daily Records for  000/{{ livestocksDetails.id }}</h4> 
+                        <ul id="myTab" class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#feeding" id="feeding-tab" role="tab" data-toggle="tab" aria-controls="feeding" aria-expanded="true">Feeding</a></li>
+                            <li role="presentation" class=""><a href="#medication" role="tab" id="medication-tab" data-toggle="tab" aria-controls="medication" aria-expanded="false">Medication</a></li>
+                            <li role="presentation" class=""><a href="#mortality" role="tab" id="mortality-tab" data-toggle="tab" aria-controls="mortality" aria-expanded="false">Mortality</a></li>
+
+                        </ul>
+                        <br>
+                        <div id="myTabContent" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade active in" id="feeding" aria-labelledby="home-tab">
+                                
+                               <table class="table table-bordered table-hover" style="margin-bottom:0" id ="dailyrecords-table">
+                                   
+                                    <thead>
+                                    <tr>Feeding Records</tr>
+                                        <tr>
+                                            <th>S/No</th>
+                                             
+                                            <th>Farm Name</th>
+                                           
+                                            <th>Qty</th>
+                                            <th>Date </th>
+                                            
+                                            <th><button type="button" class="btn btn-block btn-sm btn-primary js-add-feeding"  data-url="{% url 'feeding-add' %}"> Feeding</button></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                {% include 'includes/_list_feed.html' %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="medication" aria-labelledby="profile-tab">
+                                 <table class="table table-bordered table-hover dailyrecords-table" style="margin-bottom:0" id ="feeding-table">
+                                   
+                                    <thead>
+                                     <tr><th>Medication Records</th><th></th><th><a href="#" class="btn btn-sm btn-block btn-primary" type="button">Drugs</a></th><th><a href="#" class="btn btn-sm btn-block btn-primary" type="button">Disease Records</a></th></tr>
+                                        <tr>
+                                            <th>S/No</th>
+                                             
+                                            <th>Farm Name</th>
+                                           
+                                            <th>Qty</th>
+                                            <th>Date </th>
+                                            
+                                            <th><a href="#" class="btn btn-block btn-sm btn-primary" type="button"> Medications</a></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                {% include 'includes/_list_medication.html' %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="mortality" aria-labelledby="dropdown1-tab">
+                                 <table class="table table-bordered table-hover" style="margin-bottom:0">
+                                   
+                                    <thead>
+                                     <tr>Mortality Records</tr>
+                                        <tr>
+                                            <th>S/No</th>
+                                             
+                                            <th>Farm Name</th>
+                                           
+                                            <th>Qty</th>
+                                            <th>Date </th>
+                                            
+                                            <th><a href="#" class="btn btn-block btn-sm btn-primary" type="button"> Mortality</a></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                {% include 'includes/_list_mortality.html' %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>                                      
+                     
+                </div>
+                </div>
+                </div>
+{% comment %} Modal Form {% endcomment %}
+<!--Modal-->
+  <!-- Modal -->
+<div class="modal fade modal-dailyrecords" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      
+    </div>
+  </div>
+</div>
+{% comment %} End Modal Form {% endcomment %}
+
+
+{% endblock content %}

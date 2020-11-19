@@ -1,40 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="container-fluid cm-container-white">
-                <h2 style="margin-top:0;">Welcome to Our Farm !</h2> 
-                <p> {% lorem 1 b random %}</p>
-            </div>
              <div class="container-fluid">
           <div class="panel panel-default">
-                    <div class="panel-heading">Livestocks</div>
+                    <div class="panel-heading panel-menu">
+                    <ul class="nav pull-left">
+                    <li><a type="button" href="{% url 'livestocks-add' %}">Add Livestock Name</a></li>
+                    </ul></div>
                     <div class="panel-body" id="demo-buttons">
-                        <p>Click buttons below to change navbar main color :</p>
                         <div class="row">
-                          <table class="table table-bordered table-hover" style="margin-bottom:0">
-                                    <caption>List of Livestocks</caption>
+                            <table class="table table-bordered table-hover" style="margin-bottom:0">
+                                    <caption>List of Livestock Names</caption>
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Farm Name</th>
+                                            <th>S/No</th>
+                                             <th>View Details</th>
                                             <th>Livestock Name</th>
-                                            <th>Qty</th>
-                                            <th>Date Stocked</th>
-                                            <th></th>
+                                            <th> Descriptions</th>
+                                            
                                             <th></th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for livestock in livestocks %}
+                                        {% for type in page_obj %}
                                 <tr>
+                                <td>{{ forloop.counter}}</td>
                                 <td ><a  type="button" href="#" class="btn btn-block btn-outline-primary">View</a></td>
-                                    <td>{{ livestock.count}}</td>
-                                    <td>{{livestock.farmName}}</td>
-                                    <td>{{livestock.livestockname}}</td>
-                                    <td>{{livestock.qty}}</td>
-                                    <td>{{livestock.datepurchased}}</td>
-                                    <td></td>
+                                   
+                                    <td>{{type.name}}</td>
+                                    <td>{{type.description}}</td>
+                                    
                                     <td><a  type="button" href="#" class="btn btn-block btn-outline-warning ">Edit</a></td>
                                     
                                     <td><a class="btn btn-block btn-sm btn-outline-danger ">Delete</a></td>
@@ -46,8 +42,14 @@
                                     {% endfor %}
                                     </tbody>
                                 </table>
-                            
+                                                         
                         </div>
+                        {% comment %} pagination {% endcomment %}
+                         
+                        {% comment %} pagination {% endcomment %}
+
+                        
                     </div>
                 </div>
+                
 {% endblock content %}

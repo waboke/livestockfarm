@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+       
+             <div class="container-fluid">
+          <div class="panel panel-default">
+                    <div class="panel-heading panel-menu">
+                    <ul class="nav pull-left">
+                    <li><a type="button" href="#">Add Livestock</a></li>
+                    </ul></div>
+                    <div class="panel-body" id="demo-buttons">
+                        <div class="row">
+                           <div class="clo-md-12">
+                           <form action="" method="post">
+                           {% csrf_token %}
+                           {{ form.as_p}}
+                         <button type="submit" value="Submit" class="btn btn-block btn-primary">Submit</button>
+                           
+                           </form>
+                           
+                           </div>
+                        </div>
+                    </div>
+                </div>
+{% endblock content %}

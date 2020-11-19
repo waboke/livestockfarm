@@ -1,0 +1,18 @@
+{% for medication in medication %}
+                                <tr>
+                                <td>{{ forloop.counter}}</td>
+                                   
+                                    <td>{{medication.medication}}</td>
+                                   
+                                    <td>{{medication.disease}}</td>
+                                    <td>{{medication.datepurchased}}</td>
+                                   
+                                    <td><a  type="button" href="#" class="btn btn-block btn-outline-warning ">Edit</a></td>
+                                    
+                                    <td><a class="btn btn-block btn-sm btn-outline-danger ">Delete</a></td>
+                                    </tr>
+                                    {% empty %}
+                                        <tr>
+                                        <td colspan="8" class="text-center bg-warning"> No Medication to display</td>
+                                        </tr>
+                                    {% endfor %}

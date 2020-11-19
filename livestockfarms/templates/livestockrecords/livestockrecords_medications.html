@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+             <div class="container-fluid">
+             <div class="panel panel-default">
+                    <div class="panel-heading panel-menu">
+                   
+                     {% include 'includes/_daily_menu.html' %}
+                    </div>
+                    <div class="panel-body" id="demo-buttons">
+                        <div class="row">
+                            
+                    <table class="table table-bordered">
+                        <tr>
+                            <td style="white-space:nowrap">Farm Name</td>
+                            <td style="width:100%">
+                                {{ livestocksDetails.farmName }}
+                            </td>
+                           
+                        </tr>
+                        <tr>
+                            <td style="white-space:nowrap">Live Stock type</td>
+                            
+                            
+                            <td style="width:100%">
+                                 {{ livestocksDetails.livestockname }}
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <td style="white-space:nowrap">Quantity stocked</td>
+                            <td>
+                                {{ livestocksDetails.qty }}
+                            </td>
+                          
+                        </tr>
+                        <tr>
+                            <td style="white-space:nowrap">Quantity Left</td>
+                            <td>
+                                 {{ livestocksDetails.name }}
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <td style="white-space:nowrap">Date stocked</td>
+                            <td style="width:100%">
+                                 {{ livestocksDetails.datepurchased }}
+                            </td>
+                            
+                        </tr>
+                        
+                    </table>
+                
+                                                         
+                        </div>
+
+                        
+                    </div>
+                </div>
+             
+            <div class="panel panel-default">
+                    <div class="panel-heading panel-menu">
+                    <ul class="nav pull-left">
+                    <li><a type="button" href="{% url 'livestocks-add' %}">Add Livestock</a></li>
+                    </ul></div>
+                    <div class="panel-body" id="demo-buttons">
+                        <div class="row">
+                            
+                                                         
+                        </div>
+
+                        
+                    </div>
+                </div>
+                </div>
+                
+{% endblock content %}

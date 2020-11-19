@@ -1,0 +1,26 @@
+ {% for livestock in livestocks %}
+                                <tr>
+                                <td>{{ forloop.counter}}</td>
+                                <td ><a  type="button" href="{% url 'livestocks-details' livestock.id %}" class="btn btn-block btn-outline-primary">View</a></td>
+                                   
+                                    <td>{{livestock.farmName}}</td>
+                                    <td>{{livestock.livestockname}}</td>
+                                    <td>{{livestock.qty}}</td>
+                                    <td>{{livestock.datepurchased}}</td>
+                                   
+                                    <td>
+                                    <button type="button" 
+                                            class="btn btn-warning btn-sm js-edit-livestock" 
+                                            data-url="{% url 'edit-livestock' livestock.id %}">
+                                <i class="fa fa-pencil-square-o"></i>Edit</button> 
+                                    <button type="button"
+                                        class="btn btn-danger btn-sm js-delete-livestock" 
+                                        data-url="{% url 'delete-livestock' livestock.id %}" >
+                                <i class="fa fa-trash-o"></i> Delete</button> 
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                        <tr>
+                                        <td colspan="8" class="text-center bg-warning"> No Livestock to display</td>
+                                        </tr>
+                                    {% endfor %}

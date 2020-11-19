@@ -1,14 +1,52 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block javascript %}
+ <script src="{% static 'js/script.js' %}"></script>
+{% endblock javascript %}
 {% block content %}
+             <div class="container-fluid">
           <div class="panel panel-default">
-                    <div class="panel-heading">List of Livestocks</div>
+                    <div class="panel-heading panel-menu">
+                    <ul class="nav pull-left">
+                   <li><button type="button" class="btn btn-primary btn-sm js-add-livestock" data-url="{% url 'livestocks-add' %}" >
+                Add Livestock</button> </li>
+                    </ul></div>
                     <div class="panel-body" id="demo-buttons">
-                        <p>Click buttons below to change navbar main color :</p>
                         <div class="row">
-                            {% lorem 1 b random %}
-                            
+                            <table class="table table-bordered table-hover" style="margin-bottom:0" id ="livestock-table">
+                                    <caption>List of Livestocks</caption>
+                                    
+                                    <thead>
+                                        <tr>
+                                            <th>S/No</th>
+                                             <th>View Details</th>
+                                            <th>Farm Name</th>
+                                            <th>Livestock Name</th>
+                                            <th>Qty</th>
+                                            <th>Date Stocked</th>
+                                            
+                                           
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                           {% include 'includes/_list_livestock.html' %}
+                                    </tbody>
+                                </table>
+                                                         
                         </div>
+                       
+</div>
+                        
                     </div>
                 </div>
+                <!-- Modal -->
+<div class="modal fade" id="modal-product" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      
+    </div>
+  </div>
+</div>
 {% endblock content %}

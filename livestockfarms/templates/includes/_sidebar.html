@@ -7,19 +7,20 @@
                 <div id="cm-menu-items-wrapper">
                     <div id="cm-menu-scroller">
                         <ul class="cm-menu-items">
-                            <li class="active"><a href="#" class="sf-house">Home</a></li>
+                            <li class="active"><a href=" {% url 'livestocks-home' %} " class="sf-house">Home</a></li>
                             <li><a href="#" class="sf-dashboard">Dashboard</a></li>
-                            <li><a href="#" class="md-view-stream ">Livesocks</a></li>
                             <li class="cm-submenu">
-                                <a class="sf-window-layout">Daily Records <span class="caret"></span></a>
+                                <a class="md-view-stream">Livesocks  <span class="caret"></span></a>
                                 <ul>
-                                    <li><a href="#">Feeding</a></li>
-                                    <li><a href="#">Treatements</a></li>
-                                    <li><a href="#">Vacination</a></li>
+                                    <li><a href="{% url 'livestocks-views' %}" >Add Livestock</a></li>
+                                    <li><a href="{% url 'farmname-views' %}">Farm Name</a></li>
+                                    <li><a href="{% url 'livestocktype-views' %}">Livestock Type</a></li>
                                 </ul>
                             </li>
-                           
-                            <li><a href="#" class="sf-notepad">Blog</a></li>
+        
+                              <li><a href="#" class="sf-notepad">Sales</a></li>
+                             <li><a href="#" class="sf-notepad">Income</a></li>
+                            <li><a href="#" class="sf-notepad">Expensis</a></li>
                             <li><a href="#" class="sf-lock-open">Login page</a></li>
 
                         </ul>

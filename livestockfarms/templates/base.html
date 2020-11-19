@@ -15,16 +15,13 @@
       {% include 'includes/_sidebar.html' %}
         {% include 'includes/_header.html' %}
         <div id="global">
-            <div class="container-fluid cm-container-white">
-                <h2 style="margin-top:0;">Welcome to Our Farm !</h2> 
-                <p> {% lorem 1 b random %}</p>
-            </div>
-            <div class="container-fluid">
             {% block content %}
+           
+            
 
             {% endblock content %}
       
-            </div>
+            <div>
             <footer class="cm-footer"><span class="pull-left">Designed By William Rupert</span><span class="pull-right">&copy; www.wabokeglobal.com</span></footer>
         </div>
         <script src="{% static 'js/lib/jquery.min.js' %}"></script>
@@ -32,7 +29,9 @@
         <script src="{% static 'js/jquery.cookie.min.js' %}"></script>
         <script src="{% static 'js/fastclick.min.js' %}"></script>
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
-        <script src="{% static 'js/clearmin.min.js' %}"></script>
-        <script src="{% static 'js/demo/home.js' %}"></script>
+        <script src="{% static 'js/clearmin.min.js' %}"></script>        
+        <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+         {% block javascript %}
+         {% endblock javascript %}
     </body>
 </html>

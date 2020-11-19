@@ -40,8 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'livestockrecords',
+    'widget_tweaks',
+    'bootstrap_modal_forms',
 ]
-
+LOGIN_REQUIRED_FOR_CRUD = False
+PERMISSION_REQUIRED_FOR_CRUD = False
+PROJECT_NAME = 'livestockfarms'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
