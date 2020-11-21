@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
     # livestockrecords
     path('', views.daily_home, name = "daily-home"),
-    path('daily-feeding/<str:pk>/', views.daily_feeding, name = "daily-feeding"),
+    path('daily-feeding/<str:pk>/', views.feeding_add, name = "daily-feeding"),
     
     
     
