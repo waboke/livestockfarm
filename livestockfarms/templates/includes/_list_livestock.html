@@ -1,7 +1,7 @@
  {% for livestock in livestocks %}
                                 <tr>
                                 <td>{{ forloop.counter}}</td>
-                                <td ><a  type="button" href="{% url 'livestocks-details' livestock.id %}" class="btn btn-block btn-outline-primary">View</a></td>
+                                <td ><a  type="button" href="{% url 'livestock-details' livestock.id %}" class="btn btn-block btn-outline-primary">View</a></td>
                                    
                                     <td>{{livestock.farmName}}</td>
                                     <td>{{livestock.livestockname}}</td>
