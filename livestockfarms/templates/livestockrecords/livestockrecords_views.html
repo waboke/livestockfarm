@@ -7,14 +7,12 @@
              <div class="container-fluid">
           <div class="panel panel-default">
                     <div class="panel-heading panel-menu">
-                    <ul class="nav pull-left">
-                   <li><button type="button" class="btn btn-primary btn-sm js-add-livestock" data-url="{% url 'livestocks-add' %}" >
-                Add Livestock</button> </li>
-                    </ul></div>
+                     <caption>List of Livestocks</caption>
+                     </div>
                     <div class="panel-body" id="demo-buttons">
                         <div class="row">
                             <table class="table table-bordered table-hover" style="margin-bottom:0" id ="livestock-table">
-                                    <caption>List of Livestocks</caption>
+                                   
                                     
                                     <thead>
                                         <tr>
@@ -26,7 +24,8 @@
                                             <th>Date Stocked</th>
                                             
                                            
-                                            <th></th>
+                                            <th><button type="button" class="btn btn-block btn-primary btn-sm js-add-livestock" data-url="{% url 'livestocks-add' %}" >
+                Add Livestock</button></th>
                                         </tr>
                                     </thead>
                                     <tbody>

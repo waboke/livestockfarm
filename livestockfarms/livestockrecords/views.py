@@ -99,11 +99,3 @@ def livestocktype_add(request):
             form.save()
             return redirect( 'livestocktype-view' )
 
-def livestocks_details(request, pk):
-    livestocksDetails = Livestock.objects.get(id=pk) 
-    feeds = livestocksDetails.feeding_set.all() 
-    medication = livestocksDetails.medication_set.all() 
-    mortality = livestocksDetails.mortality_set.all() 
-    context ={'livestocksDetails':livestocksDetails, 'feeds':feeds,'medication':medication, 'mortality':mortality }
-    template ='dailyrecords/livestockrecords_details.html'
-    return render(request, template,context)

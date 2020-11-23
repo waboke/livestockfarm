@@ -2,14 +2,16 @@
                                 <tr>
                                 <td>{{ forloop.counter}}</td>
                                    
+                                    
+                                   <td>{{mortality.datepurchased}}</td>
+                                    <td>{{mortality.qty}}</td>
+                                    
                                     <td>{{mortality.cause}}</td>
                                    
-                                    <td>{{mortality.qty}}</td>
-                                    <td>{{mortality.datepurchased}}</td>
-                                   
-                                    <td><a  type="button" href="#" class="btn btn-block btn-outline-warning ">Edit</a></td>
-                                    
-                                    <td><a class="btn btn-block btn-sm btn-outline-danger ">Delete</a></td>
+                                    <td><button type="button" class="btn btn-warning btn-sm js-edit-livestock" data-url="#">
+                                        <i class="fa fa-pencil-square-o"></i>Edit</button> </td>
+                                    <td> <button type="button" class="btn btn-danger btn-sm js-delete-livestock" data-url="#" >
+                                        <i class="fa fa-trash-o"></i> Delete</button> </td>
                                     </tr>
                                     {% empty %}
                                         <tr>

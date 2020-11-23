@@ -40,8 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'livestockrecords',
-    'dailyrecords',
+    'dailyrecords', 
+    'crispy_forms',
     'widget_tweaks',
+   
     'bootstrap_modal_forms',
 ]
 LOGIN_REQUIRED_FOR_CRUD = False

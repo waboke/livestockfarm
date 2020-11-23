@@ -10,9 +10,11 @@ class Addmedication(models.Model):
     )
     name = models.CharField(max_length=200, null=True)
     medicationType = models.CharField(max_length=200, null=True, choices= MEDICATIONTYPE)
+    
 
     def __str__(self):
         return self.name
+    
 
 class Adddisease(models.Model):
     
@@ -42,3 +44,6 @@ class Medication(DailyRecords):
 class Feeding(DailyRecords):
     feedname = models.CharField(max_length=200, null=True)
     qty = models.FloatField()
+
+    def __str__(self):
+        return self.feedname

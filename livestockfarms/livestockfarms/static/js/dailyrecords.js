@@ -1,5 +1,18 @@
 $(document).ready(function() {
 
+    $(function() {
+
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+            localStorage.setItem('lastTab', $(this).attr('href'));
+        });
+        var lastTab = localStorage.getItem('lastTab');
+
+        if (lastTab) {
+            $('[href="' + lastTab + '"]').tab('show');
+        }
+
+    });
+
     var loadForm = function() {
         var btn = $(this);
         $.ajax({
@@ -35,7 +48,6 @@ $(document).ready(function() {
         return false;
     };
 
-
     /* Binding */
     $(".js-add-feeding").click(loadForm);
     $(".modal-dailyrecords").on("submit", ".js-add-feeding-form", saveForm);
@@ -47,5 +59,6 @@ $(document).ready(function() {
     // Delete product
     $(".dailyrecords-table").on("click", ".js-delete-feeding", loadForm);
     $(".modal-dailyrecords").on("submit", ".js-delete-feeding-form", saveForm);
+
 
 });

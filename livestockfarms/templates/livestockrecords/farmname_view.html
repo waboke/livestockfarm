@@ -4,13 +4,11 @@
              <div class="container-fluid">
           <div class="panel panel-default">
                     <div class="panel-heading panel-menu">
-                    <ul class="nav pull-left">
-                    <li><a type="button" href="{% url 'farmname-add' %}">Add Farm</a></li>
-                    </ul></div>
+                   <caption>List of Farm Names</caption></div>
                     <div class="panel-body" id="demo-buttons">
                         <div class="row">
                             <table class="table table-bordered table-hover" style="margin-bottom:0">
-                                    <caption>List of Farm Names</caption>
+                                    
                                     <thead>
                                         <tr>
                                             <th>S/No</th>
@@ -21,8 +19,8 @@
                                             <th>State</th>
                                               <th>City</th>
                                             
-                                            <th></th>
-                                            <th></th>
+                                            <th colspan="2"><a class="btn btn-block btn-primary" type="button" href="{% url 'farmname-add' %}">Add Farm</a></th>
+                                          
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -37,9 +35,10 @@
                                     <td>{{farm.state}}</td>
                                      <td>{{farm.city}}</td>
                                    
-                                    <td><a  type="button" href="#" class="btn btn-block btn-outline-warning ">Edit</a></td>
-                                    
-                                    <td><a class="btn btn-block btn-sm btn-outline-danger ">Delete</a></td>
+                                    <td><button type="button" class="btn btn-warning btn-sm js-edit-livestock" data-url="#">
+                                    <i class="fa fa-pencil-square-o"></i>Edit</button> </td>
+                                <td> <button type="button" class="btn btn-danger btn-sm js-delete-livestock" data-url="#" >
+                                    <i class="fa fa-trash-o"></i> Delete</button> </td>
                                     </tr>
                                     {% empty %}
                                         <tr>

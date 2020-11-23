@@ -11,9 +11,9 @@ urlpatterns = [
     path('delete-livestock/<str:pk>/', views.delete_livestock, name = "delete-livestock"),  
     path('farmname-views/', views.farmname_views, name = "farmname-views"),
     path('farmname-add/', views.farmname_add, name = "farmname-add"),
-     path('livestocktype-views/', views.livestocktype_views, name = "livestocktype-views"),
+    path('livestocktype-views/', views.livestocktype_views, name = "livestocktype-views"),
     path('livestocktype-add/', views.livestocktype_add, name = "livestocktype-add"),
-    path('livestock-details/<str:pk>/', views.livestocks_details, name = "livestock-details"),
+    
     
     ]
 

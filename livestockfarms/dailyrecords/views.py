@@ -7,10 +7,6 @@ from livestockrecords.models import *
 from .models import *
 from .forms import *
 
-
-from .models import *
-from .forms import *
-
 # Create your views here.
 
 def daily_home(request):
@@ -18,39 +14,76 @@ def daily_home(request):
     template = 'dailyrecords/daily_home.html'
     return render(request, template, context)
 
-def daily_feeding(request , pk):
-    livestocks = Livestock.objects.get(id=pk)
-    feed = livestocks.feeding_set.all()
-    form =FeedingForm(initial={'livestock': livestocks})
-    if request.method == "POST":
-        #print('printing post:', request.POST)
-        form =FeedingForm(request.POST,initial={'livestock': pk} )
-        if form.is_valid():
-            form.save()
-            return redirect('add_dailyrecords', pk = pk )
-    context = {'livestocks': livestocks,  'feed':feed,'form': form } 
-    return render(request, 'dailyrecords/daily_feeding.html', context)
-
-def feeding_form(request, form, template_name):
+def save_feeding_form(request, form, template_name):
     data = dict()
     if request.method == 'POST':
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
-            livestocks = Livestock.objects.all()
-            feed = livestocks.feeding_set.all()
-            context = {'feed': feed}
-            data['html_product_list'] = render_to_string('includes/_list_feed.html', context)
+            livestocks = Livestock.objects.all() 
+            feeds = livestocks.feeding_set.all()
+            context ={
+                'feeds': feeds
+            }
+            data['html_livestock_list'] = render_to_string('includes/_list_feeding.html', context)
         else:
             data['form_is_valid'] = False
     context = {'form': form}
     data['html_form'] = render_to_string(template_name, context, request=request)
     return JsonResponse(data)
 
-def feeding_add(request, pk):
-    livestocks = Livestock.objects.get(id=pk)
+def livestocks_details(request, pk):
+    livestocksDetails = Livestock.objects.get(id=pk) 
+    feeds = livestocksDetails.feeding_set.all() 
+    medication = livestocksDetails.medication_set.all() 
+    mortality = livestocksDetails.mortality_set.all() 
     if request.method == 'POST':
-        form = FeedingForm(request.POST, initial={'livestock': pk})
+        feed_form = FeedingForm(request.POST ,initial={'livestock': pk})
+        mort_form = mortalityForm(request.POST ,initial={'livestock': pk})
+        med_form = MedicationForm(request.POST ,initial={'livestock': pk})
+        if feed_form.is_valid():
+                feed_form.save()
+
+        elif mort_form.is_valid():
+            mort_form.save()
+            
+        elif med_form.is_valid():
+            med_form.save()
+            
+        return redirect('livestock-details', pk = pk )
+        
     else:
-        form = FeedingForm(initial={'livestock': livestocks})
-    return feeding_form(request, form, 'includes/_add_feeding.html')
+        feed_form = FeedingForm(initial={'livestock': livestocksDetails})
+        mort_form = mortalityForm(initial={'livestock': livestocksDetails})
+        med_form = MedicationForm(initial={'livestock': livestocksDetails})
+        context ={'livestocksDetails':livestocksDetails, 'feeds':feeds,'medication':medication, 'mortality':mortality,'feed_form':feed_form, 'mort_form':mort_form, 'med_form':med_form }
+        template ='dailyrecords/livestockrecords_details.html'
+        return render(request, template,context)
+    
+   
+def drugs_view(request):
+    drugs = Addmedication.objects.all()
+    disease = Adddisease.objects.all()
+    if request.method == 'POST':
+        form =DrugForm(request.POST)
+        form =DiseaseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('drugs')
+    else:
+        form = DrugForm()
+        context = {'drugs':drugs, 'form':form }
+        return render(request, 'dailyrecords/drugs_view.html', context )
+
+def disease_view(request):
+    disease = Adddisease.objects.all()
+    if request.method == 'POST':
+        form =DiseaseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('disease')
+    else:
+        form = DiseaseForm()
+        context = {'disease':disease , 'form':form }
+        return render(request, 'dailyrecords/disease_view.html', context )
+       

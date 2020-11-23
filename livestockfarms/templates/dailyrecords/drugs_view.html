@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+             <div class="container-fluid">
+          <div class="panel panel-default">
+                    <div class="panel-heading panel-menu">
+                     <caption>List of Drugs </caption>
+                    </div>
+                    <div class="panel-body" id="demo-buttons">
+                        <div class="row">
+                            <table class="table table-bordered table-hover" style="margin-bottom:0">
+                                   
+                                    <thead>
+                                        <tr>
+                                            <th>S/No</th>
+                                           
+                                            <th>Livestock Name</th>
+                                            <th> Descriptions</th>
+                                            
+                                            <th colspan="2"><button  class="btn btn-block btn-primary " data-toggle="modal" data-target="#drug">Add Drug</button></th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for drug in drugs %}
+                                <tr>
+                                <td>{{ forloop.counter}}</td>
+                              
+                                   
+                                    <td>{{drug.name}}</td>
+                                    <td>{{drug.medicationType}}</td>
+                                    
+                                    <td><button type="button" class="btn btn-warning btn-sm js-edit-livestock" data-url="#">
+                                    <i class="fa fa-pencil-square-o"></i>Edit</button> </td>
+                                <td> <button type="button" class="btn btn-danger btn-sm js-delete-livestock" data-url="#" >
+                                    <i class="fa fa-trash-o"></i> Delete</button> </td>
+                                    </tr>
+                                    {% empty %}
+                                        <tr>
+                                        <td colspan="8" class="text-center bg-warning"> No Drugs to display</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                                         
+                        </div>
+                        {% comment %} pagination {% endcomment %}
+                         
+                        {% comment %} pagination {% endcomment %}
+
+                        
+                    </div>
+                </div>
+
+                 <!-- Modal -->
+<div class="modal fade" id="drug"  tabindex="-1" role="dialog" aria-labelledby="feedingRecords">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <form method="POST" action="">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Add New Drug</h4>
+                </div>
+                <div class="modal-body">
+                  {% csrf_token %}
+                
+                  <div class="form-group " >
+                 {{ form.name|as_crispy_field }}
+                 
+                 </div>      
+               <div class="form-group " >
+                 {{ form.medicationType|as_crispy_field }}
+                 
+                 </div>   
+                    
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default modal-close" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Feeding</button>
+                </div>
+            </form>
+    </div>
+  </div>
+</div>
+{% comment %} Modal Form  Mortality{% endcomment %}
+                
+                
+{% endblock content %}

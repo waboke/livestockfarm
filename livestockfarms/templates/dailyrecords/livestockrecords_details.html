@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block javascript %}
   <script src="{% static 'js/dailyrecords.js' %}"></script>
 {% endblock javascript %}
@@ -54,7 +55,7 @@
                     <h4 >Daily Records for  000/{{ livestocksDetails.id }}</h4> 
                         <ul id="myTab" class="nav nav-tabs" role="tablist">
                             <li role="presentation" class="active"><a href="#feeding" id="feeding-tab" role="tab" data-toggle="tab" aria-controls="feeding" aria-expanded="true">Feeding</a></li>
-                            <li role="presentation" class=""><a href="#medication" role="tab" id="medication-tab" data-toggle="tab" aria-controls="medication" aria-expanded="false">Medication</a></li>
+                            <li role="presentation" class="medication-tab"><a href="#medication" role="tab" id="medication-tab" data-toggle="tab" aria-controls="medication" aria-expanded="false">Medication</a></li>
                             <li role="presentation" class=""><a href="#mortality" role="tab" id="mortality-tab" data-toggle="tab" aria-controls="mortality" aria-expanded="false">Mortality</a></li>
 
                         </ul>
@@ -69,13 +70,13 @@
                                         <tr>
                                             <th>S/No</th>
                                              
-                                            <th>Farm Name</th>
+                                            <th>Feed Name</th>
                                            
                                             <th>Qty</th>
                                             <th>Date </th>
                                             
-                                            <th><button type="button" class="btn btn-block btn-sm btn-primary js-add-feeding"  data-url="{% url 'daily-feeding' livestocksDetails.id %}"> Feeding</button></th>
-                                            <th></th>
+                                            <th colspan="2"><button  class="btn btn-block btn-primary " data-toggle="modal" data-target=".feeding">Add Feeds</button> </th>
+                                           
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -87,17 +88,20 @@
                                  <table class="table table-bordered table-hover dailyrecords-table" style="margin-bottom:0" id ="feeding-table">
                                    
                                     <thead>
-                                     <tr><th>Medication Records</th><th></th><th><a href="#" class="btn btn-sm btn-block btn-primary" type="button">Drugs</a></th><th><a href="#" class="btn btn-sm btn-block btn-primary" type="button">Disease Records</a></th></tr>
+                                    
                                         <tr>
                                             <th>S/No</th>
+                                            <th>Drug</th>
+                                            <th>Medication Type</th>
                                              
-                                            <th>Farm Name</th>
+                                            <th>Disease Name</th>
+                                            
                                            
-                                            <th>Qty</th>
+                                            
                                             <th>Date </th>
                                             
-                                            <th><a href="#" class="btn btn-block btn-sm btn-primary" type="button"> Medications</a></th>
-                                            <th></th>
+                                            <th colspan="2"><button  class="btn btn-block btn-primary " data-toggle="modal" data-target=".medication">Add Medication</button></th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -113,13 +117,13 @@
                                         <tr>
                                             <th>S/No</th>
                                              
-                                            <th>Farm Name</th>
+                                            <th>Date</th>
                                            
                                             <th>Qty</th>
-                                            <th>Date </th>
+                                            <th>Cause of death </th>
                                             
-                                            <th><a href="#" class="btn btn-block btn-sm btn-primary" type="button"> Mortality</a></th>
-                                            <th></th>
+                                            <th colspan="2"><button  class="btn btn-block btn-primary " data-toggle="modal" data-target=".mortality">Add Mortality</button></th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -133,18 +137,114 @@
                 </div>
                 </div>
                 </div>
-{% comment %} Modal Form {% endcomment %}
+{% comment %} Modal Form feeding {% endcomment %}
 <!--Modal-->
   <!-- Modal -->
-<div class="modal fade modal-dailyrecords" >
-  <div class="modal-dialog">
+<div class="modal fade feeding"  tabindex="-1" role="dialog" aria-labelledby="feedingRecords">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
-      
-      
+        <form method="POST" action="">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Add Feeding</h4>
+                </div>
+                <div class="modal-body">
+                  {% csrf_token %}
+                
+                    <div class="form-group disabled hidden" >
+                 {{ feed_form.livestock|as_crispy_field }}
+                 
+                 </div>      
+               <div class="form-group " >
+                 {{ feed_form.datepurchased|as_crispy_field }}
+                 
+                 </div>   
+                 <div class="form-group " >
+                 {{ feed_form.feedname|as_crispy_field }}
+                 
+                 </div> 
+                 <div class="form-group " >
+                 {{ feed_form.qty|as_crispy_field }}
+                 
+                 </div> 
+                    
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default modal-close" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Feeding</button>
+                </div>
+            </form>
     </div>
   </div>
 </div>
-{% comment %} End Modal Form {% endcomment %}
+{% comment %} Modal Form  Mortality{% endcomment %}
+
+<div class="modal fade mortality" tabindex="-1" role="dialog" aria-labelledby="feedingRecords">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" action="">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Mortality</h4>
+                </div>
+            <div class="modal-body">
+            {% csrf_token %}
+            <div class="form-group " >
+            {{ mort_form.livestock | as_crispy_field }}
+            </div> 
+            <div class="form-group " >
+            {{ mort_form.datepurchased | as_crispy_field }}
+            </div> 
+            <div class="form-group " >
+            {{ mort_form.qty | as_crispy_field }}
+            </div> 
+            <div class="form-group " >
+            {{ mort_form.cause | as_crispy_field }}
+            </div> 
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-default modal-close" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Mortality</button>
+            </div>
+            </form>
+</div>
+</div>
+</div>
+
+<!--Modal-->
+<!--Medication-->
+<div class="modal fade medication" tabindex="-1" role="dialog" aria-labelledby="feedingRecords">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+            <form method="post" action="">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Medication</h4>
+                </div>
+                    <div class="modal-body">
+                    {% csrf_token %}
+                    <div class="form-group " >
+                    {{ med_form.livestock | as_crispy_field }}
+                    </div> 
+                    <div class="form-group " >
+                    {{ med_form.datepurchased | as_crispy_field }}
+                    </div> 
+                    <div class="form-group " >
+                    {{ med_form.medication | as_crispy_field }}
+                    </div> 
+                    <div class="form-group " >
+                    {{ med_form.disease | as_crispy_field }}
+                    </div> 
+                    </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default modal-close" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Medication</button>
+                </div>
+            </form>
+    </div>
+</div>
+</div>
+
 
 
 {% endblock content %}

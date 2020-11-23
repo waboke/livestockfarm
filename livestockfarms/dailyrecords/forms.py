@@ -14,7 +14,7 @@ class FeedingForm(ModelForm):
             'qty': '',
         }
         widgets = {
-            'livestock': forms.HiddenInput(),
+        
             'datepurchased':forms.TextInput( attrs={
                 'placeholder': 'Date Added *',
                 'class': 'form-control',
@@ -62,10 +62,10 @@ class MedicationForm(ModelForm):
         fields = ['livestock','datepurchased', 'medication', 'disease']
         
         labels = {
-             'livestock':'',
-            'datepurchased': '',
-            'medication': '',
-            'disease': '',
+             'livestock':'Livestock ID',
+            'datepurchased': 'Date',
+            'medication': 'Drug Name',
+            'disease': 'Disease',
         }
         widgets = {
              'livestock': forms.HiddenInput(),
@@ -82,3 +82,44 @@ class MedicationForm(ModelForm):
                 'class': 'form-control'}),
                 
         }
+
+class DiseaseForm(ModelForm):
+    class Meta:
+        model = Adddisease
+        fields = ('name','description',)
+
+        labels = {
+            'name': 'Disease name',
+            'description': 'Description',
+            
+        }
+        widgets = {
+            'name':forms.TextInput(attrs = { 
+                'placeholder': 'isease name *',
+                'class': 'form-control'}),
+            'description':forms.Textarea(attrs = { 
+                'placeholder': 'Little description *',
+                'class': 'form-control'}),
+            
+                
+        }
+class DrugForm(ModelForm):
+    class Meta:
+        model = Addmedication
+        fields = ('name','medicationType',)
+
+        labels = {
+            'name': 'Drug name',
+            'medicationType': 'Medication Type',
+            
+        }
+        widgets = {
+            'name':forms.TextInput(attrs = { 
+                'placeholder': 'Drug name *',
+                'class': 'form-control'}),
+            
+    
+            
+                
+        }
+
