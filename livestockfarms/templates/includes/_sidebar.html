@@ -1,5 +1,4 @@
   
-  
    <div id="cm-menu">
           <nav class="cm-navbar cm-navbar-primary">
                 <div class="cm-flex"><a href="#" class="cm-logo"></a></div>
@@ -7,14 +6,14 @@
             </nav>
             <div id="cm-menu-content">
                 <div id="cm-menu-items-wrapper">
-                    <div id="cm-menu-scroller">
+              <div id="cm-menu-scroller" >
                         <ul class="cm-menu-items "  >
                             <li class="active"><a href=" {% url 'livestocks-home' %} " class="sf-house">Home</a></li>
                             <li><a href="#" class="sf-dashboard">Dashboard</a></li>
-                            <li class="cm-submenu" id="myDropdown" >
-                                <a class="md-view-stream">Livesocks  <span class="caret"></span></a>
-                                <ul class="dropdown-menu" id="myDropdown">
-                                    <li><a href="{% url 'livestocks-views' %}" >Add Livestock</a></li>
+                            <li class="cm-submenu" >
+                                <a class="md-add-box">Livesocks  <span class="caret"></span></a>
+                                <ul  >
+                                    <li><a href="{% url 'livestocks-views' %}"  >Add Livestock</a></li>
                                     <li><a href="{% url 'farmname-views' %}">Farm Name</a></li>
                                     <li><a href="{% url 'livestocktype-views' %}">Livestock Type</a></li>
                 
@@ -22,7 +21,7 @@
                                      <li><a href="{% url 'drugs' %}">Drugs</a></li>
                                 </ul>
                             </li>
-        
+                            <li><a href="#" class="sf-user-id">Account</a></li>
                               <li><a href="#" class="sf-notepad">Sales</a></li>
                              <li><a href="#" class="sf-notepad">Income</a></li>
                             <li><a href="#" class="sf-notepad">Expensis</a></li>
@@ -33,15 +32,4 @@
                 </div>
             </div>
         </div>
-        <script>
-  $(document).ready(function() {
-
-$('#myDropdown').on('hide.bs.dropdown', function () {
-   return false;
-});
-
-  });
-  
-  
-  
-  </script>
+        
